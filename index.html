@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Martin Nilsson Turf Consult — Uafhængig agronomisk golfrådgiver</title>
+<title>Martin Nilsson Turf Consult · Uafhængig agronomisk golfrådgiver</title>
 <meta name="description" content="Uafhængig agronomisk golfrådgivning. Mere end tyve års praksis med pesticidfri drift og links-inspireret turfstrategi.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,8 +62,6 @@
 
   /* hero */
   header { position:relative; min-height:auto; display:grid; align-items:end; overflow:hidden; background:var(--forest); }
-  .hero-img { display:none; position:absolute; inset:-8% 0; } /* hidden until a real hero photo replaces the placeholder */
-  .hero-img .slot { height:100%; aspect-ratio:auto; }
   .hero-veil { position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,32,25,.55) 0%,rgba(20,32,25,.28) 38%,rgba(20,32,25,.86) 100%); }
   .hero-inner { position:relative; padding:clamp(90px,12vh,130px) var(--pad) clamp(44px,7vh,80px); width:100%; display:grid; gap:clamp(28px,5vh,56px); }
   .hero-lock { display:flex; align-items:center; gap:16px; color:var(--white); }
@@ -73,19 +71,15 @@
   .hero-kick { font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--gold); }
   h1 { font-size:clamp(38px,6.4vw,92px); line-height:1.04; letter-spacing:-.015em; color:var(--white); text-wrap:balance; max-width:16em; }
   .hero-body { max-width:34em; font-weight:300; font-size:clamp(15px,1.25vw,19px); line-height:1.75; color:rgba(248,246,241,.82); text-wrap:pretty; }
-  .hero-ctas { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-top:6px; }
-  .pill-solid { background:var(--white); color:var(--forest); }
-  .pill-solid:hover { background:var(--sand); color:var(--forest); transform:translateY(-2px); }
-  .pill-ghost { color:var(--white); border:1px solid rgba(248,246,241,.45); padding:15px 30px; }
-  .pill-ghost:hover { background:rgba(248,246,241,.12); border-color:var(--white); color:var(--white); }
 
   /* about */
   .two { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(40px,6vw,96px); align-items:start; }
   .col { display:grid; grid-template-columns:minmax(0,1fr); gap:22px; min-width:0; }
   .prose { max-width:34em; }
-  .prose p { font-weight:300; font-size:17px; line-height:1.85; color:var(--body); text-wrap:pretty; }
+  .prose p:not(.kicker) { font-weight:300; font-size:17px; line-height:1.85; color:var(--body); text-wrap:pretty; }
   .stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:rgba(28,43,34,.12); min-width:0; }
   .stat { background:var(--white); padding:20px 12px 18px 0; min-width:0; }
+  .stat:nth-child(even) { padding-left:24px; } /* right column: clear the divider line */
   .stat-n { font-family:'EB Garamond',serif; font-size:34px; line-height:1; color:var(--forest); }
   .stat-l { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-top:8px; }
 
@@ -115,15 +109,15 @@
   .proj p { font-weight:300; font-size:15px; line-height:1.7; color:var(--mute); text-wrap:pretty; }
   .aside { display:grid; grid-template-columns:minmax(0,1fr); gap:26px; min-width:0; position:sticky; top:110px; }
   .edu { border-top:1px solid rgba(28,43,34,.18); padding-top:22px; display:grid; gap:10px; }
-  .edu p { font-weight:300; font-size:15px; line-height:1.7; color:var(--body); }
+  .edu p:not(.kicker) { font-weight:300; font-size:15px; line-height:1.7; color:var(--body); }
 
   /* leadership */
   #leadership { background:var(--forest); color:var(--white); }
   #leadership .kicker { color:var(--gold); }
   #leadership .h2 { color:var(--white); }
-  .lead-intro { display:grid; gap:22px; max-width:36em; }
-  .lead-intro p { font-weight:300; font-size:17px; line-height:1.8; color:rgba(248,246,241,.72); text-wrap:pretty; }
-  .lead-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); margin-top:clamp(44px,7vh,80px); }
+  .lead-intro { display:grid; gap:22px; }
+  .lead-intro p:not(.kicker) { font-weight:300; font-size:17px; line-height:1.8; color:rgba(248,246,241,.72); text-wrap:pretty; max-width:36em; }
+  .lead-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr)); margin-top:clamp(28px,4vh,44px); }
   .lead-card { background:var(--forest); padding:clamp(26px,3vw,40px); display:grid; gap:12px; align-content:start; }
   .lead-card .years { font-size:12px; letter-spacing:.14em; color:var(--gold); }
   .lead-card h3 { font-size:23px; line-height:1.3; color:var(--white); }
@@ -140,23 +134,23 @@
 
   /* philosophy */
   #philosophy { background:var(--sand); }
-  .phil-lead { font-family:'EB Garamond',serif; font-size:clamp(30px,4.4vw,62px); line-height:1.18; letter-spacing:-.015em; color:var(--forest); text-wrap:balance; max-width:24em; }
+  .phil-lead { font-family:'EB Garamond',serif; font-size:clamp(30px,4.4vw,62px); line-height:1.18; letter-spacing:-.015em; color:var(--forest); text-wrap:balance; max-width:40em; }
   .phil-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:clamp(28px,3vw,56px); margin-top:clamp(48px,7vh,88px); }
   .phil { display:grid; gap:12px; align-content:start; border-top:1px solid rgba(28,43,34,.22); padding-top:22px; }
   .phil h3 { font-size:22px; line-height:1.3; color:var(--forest); }
   .phil p { font-weight:300; font-size:15px; line-height:1.75; color:var(--mute); text-wrap:pretty; }
 
   /* contact */
-  .con-lead { display:grid; gap:24px; max-width:24em; }
+  .con-lead { display:grid; gap:18px; max-width:32em; }
   .con-lead h2 { font-size:clamp(29px,3.8vw,56px); line-height:1.12; letter-spacing:-.015em; color:var(--forest); text-wrap:balance; }
-  .con-lead p { font-weight:300; font-size:17px; line-height:1.8; color:var(--body); text-wrap:pretty; }
+  .con-lead p:not(.kicker) { font-weight:300; font-size:17px; line-height:1.8; color:var(--body); text-wrap:pretty; }
   .rows { display:grid; }
   .row { display:flex; justify-content:space-between; gap:20px; align-items:baseline; border-top:1px solid rgba(28,43,34,.18); padding:22px 0; transition:padding-left .4s ease; }
   .row:last-of-type { border-bottom:1px solid rgba(28,43,34,.18); }
   .row:hover { padding-left:10px; }
   .row .k { font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--sage); }
   .row .v { font-family:'EB Garamond',serif; font-size:clamp(18px,1.6vw,24px); }
-  .con-cta { justify-self:start; margin-top:34px; background:var(--forest); color:var(--white); }
+  .con-cta { justify-self:start; margin-top:20px; background:var(--forest); color:var(--white); }
   .con-cta:hover { background:#2A3D31; color:var(--white); transform:translateY(-2px); }
 
   footer { border-top:1px solid rgba(28,43,34,.14); max-width:1440px; margin:0 auto; padding:clamp(36px,5vh,60px) var(--pad); display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:center; }
@@ -216,7 +210,6 @@
 </nav>
 
 <header id="top">
-  <div class="hero-img" data-parallax><div class="slot" style="aspect-ratio:auto"><img src="images/hero.png" alt="Golfbane" loading="lazy"></div></div>
   <div class="hero-veil"></div>
   <div class="hero-inner">
     <div class="hero-lock">
@@ -244,11 +237,11 @@
     <div class="col prose reveal">
       <p class="kicker"><span data-i18n="aboutKicker">Profil</span></p>
       <h2 class="h2"><span data-i18n="aboutTitle">Banen, der skulle fungere uden kemi</span></h2>
-      <p><span data-i18n="about1">Martin Nilsson har vist, at en golfbane kan fungere fuldstændig uden kemi — uden at gå på kompromis med spilbarheden. Som uafhængig agronomisk golfrådgiver bygger han på mere end tyve års praktisk erfaring fra en af Europas mest respekterede og strengt regulerede golfbaner, hvor han ledte den fulde omstilling fra konventionel turfdrift til et robust, pesticidfrit system i høj kvalitet.</span></p>
+      <p><span data-i18n="about1">Martin Nilsson har vist, at en golfbane kan fungere fuldstændig uden kemi, uden at gå på kompromis med spilbarheden. Som uafhængig agronomisk golfrådgiver bygger han på mere end tyve års praktisk erfaring fra en af Europas mest respekterede og strengt regulerede golfbaner, hvor han ledte den fulde omstilling fra konventionel turfdrift til et robust, pesticidfrit system i høj kvalitet.</span></p>
       <p><span data-i18n="about2">Rådgivningen kombinerer langsigtet driftserfaring med uafhængig sparring. Martin er særligt værdsat for sin ro under pres, sin objektive rådgivning forankret i praktisk erfaring, og sin evne til at guide klubber trin for trin gennem komplekse agronomiske omstillinger under klimatiske, driftsmæssige og lovgivningsmæssige vilkår. I dag arbejder han selvstændigt som sparringspartner for greenkeepere, chefgreenkeepere og bestyrelser, der står over for de samme beslutninger.</span></p>
     </div>
     <div class="col reveal" style="gap:26px">
-      <div class="slot" style="aspect-ratio:4/5"><img src="images/portrait.jpg" alt="Martin Nilsson" loading="lazy"></div>
+      <div class="slot" style="aspect-ratio:4/5"><img src="images/portrait.jpg" alt="Martin Nilsson" data-i18n-alt="altPortrait" loading="lazy"></div>
       <div class="stats">
             <div class="stat">
               <div class="stat-n"><span data-i18n="stats.0.0">20+</span></div>
@@ -273,7 +266,7 @@
 
 <section id="expertise">
   <div class="wrap">
-    <div class="col reveal" style="gap:20px;max-width:30em;margin-bottom:clamp(40px,6vh,72px)">
+    <div class="col reveal" style="gap:20px;max-width:none;margin-bottom:clamp(40px,6vh,72px)">
       <p class="kicker"><span data-i18n="expKicker">Kompetenceområder</span></p>
       <h2 class="h2"><span data-i18n="expTitle">Det klubber søger hjælp til</span></h2>
     </div>
@@ -281,7 +274,7 @@
         <article class="card reveal">
           <div class="num">01</div>
           <h3><span data-i18n="services.0.0">Agronomisk rådgivning</span></h3>
-          <p><span data-i18n="services.0.1">Uafhængig, objektiv vurdering af turfens sundhed, spillekvalitet og driftspraksis — med anbefalinger prioriteret efter, hvad der betyder mest først.</span></p>
+          <p><span data-i18n="services.0.1">Uafhængig, objektiv vurdering af turfens sundhed, spillekvalitet og driftspraksis. Anbefalingerne er prioriteret efter, hvad der betyder mest først.</span></p>
         </article>
         <article class="card reveal">
           <div class="num">02</div>
@@ -296,7 +289,7 @@
         <article class="card reveal">
           <div class="num">04</div>
           <h3><span data-i18n="services.3.0">Links-inspireret drift</span></h3>
-          <p><span data-i18n="services.3.1">Drift med lave input på sandbaserede og udsatte anlæg — vind, tørke og sæsonstress behandlet som designparametre, ikke problemer.</span></p>
+          <p><span data-i18n="services.3.1">Drift med lave input på sandbaserede og udsatte anlæg, hvor vind, tørke og sæsonstress behandles som designparametre frem for problemer.</span></p>
         </article>
         <article class="card reveal">
           <div class="num">05</div>
@@ -306,7 +299,7 @@
         <article class="card reveal">
           <div class="num">06</div>
           <h3><span data-i18n="services.5.0">Vanding og dræn</span></h3>
-          <p><span data-i18n="services.5.1">Vandforsyning, jordstruktur, sandvalg og dræn vurderet som ét system — fundamentet for de fine græsser.</span></p>
+          <p><span data-i18n="services.5.1">Vandforsyning, jordstruktur, sandvalg og dræn vurderet som ét system, der er fundamentet for de fine græsser.</span></p>
         </article>
         <article class="card reveal">
           <div class="num">07</div>
@@ -316,7 +309,7 @@
         <article class="card reveal">
           <div class="num">08</div>
           <h3><span data-i18n="services.7.0">Uafhængige banegennemgange</span></h3>
-          <p><span data-i18n="services.7.1">Objektiv rapportering til bestyrelser og udvalg, skrevet så den kan læses af både ikke-fagfolk og greenkeeperteams.</span></p>
+          <p><span data-i18n="services.7.1">Objektiv rapportering til bestyrelser og udvalg, herunder miljølovgivning, habitatbeskyttelse og myndighedsdialog. Skrevet så den kan læses af både ikke-fagfolk og greenkeeperteams.</span></p>
         </article>
     </div>
   </div>
@@ -338,7 +331,7 @@
         <ul>
               <li><span class="dash">—</span><span><span data-i18n="rcgc.0">Ledte den fulde omstilling fra konventionel turfdrift til en robust, helt pesticidfri driftsmodel.</span></span></li>
               <li><span class="dash">—</span><span><span data-i18n="rcgc.1">Genindførte rødsvingel og hundegræs som dominerende arter gennem en disciplineret, links-inspireret drift med lave input.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.2">Udviklede ikke-kemiske metoder til sygdomsbekæmpelse, blandt andet tromlingsbaseret kontrol af sneskimmel — senere dokumenteret i forskning støttet af R&amp;A og STERF.</span></span></li>
+              <li><span class="dash">—</span><span><span data-i18n="rcgc.2">Udviklede ikke-kemiske metoder til sygdomsbekæmpelse, blandt andet tromlingsbaseret kontrol af sneskimmel, som senere blev dokumenteret i forskning støttet af R&amp;A og STERF.</span></span></li>
               <li><span class="dash">—</span><span><span data-i18n="rcgc.3">Udviklede langsigtede driftsstrategier, der sikrede spillekvalitet, ensartethed og robusthed på greens, fairways og teesteder.</span></span></li>
               <li><span class="dash">—</span><span><span data-i18n="rcgc.4">Primær kontakt til offentlige myndigheder om miljøbeskyttelse, vandbeskyttelse, Natura 2000 og fredningslovgivning.</span></span></li>
               <li><span class="dash">—</span><span><span data-i18n="rcgc.5">Overordnet ansvar for driftsbudgetter på 1–1,5 mio. euro årligt og ledelse af 4–12 medarbejdere.</span></span></li>
@@ -352,7 +345,7 @@
                 <span class="year">2022</span>
                 <div>
                   <div class="proj-title"><span data-i18n="projects.0.1">Short game-område</span></div>
-                  <p><span data-i18n="projects.0.2">Med arkitekt Phillip Spogard (Spogard &amp; Vandervaart). Opnåede myndighedsgodkendelse til at flytte beskyttede naturtyper — det første af sin art i Danmark — og muliggjorde anlæg inden for strenge fredningshensyn.</span></p>
+                  <p><span data-i18n="projects.0.2">Med arkitekt Phillip Spogard (Spogard &amp; Vandervaart). Opnåede myndighedsgodkendelse til at flytte beskyttede naturtyper, det første af sin art i Danmark, og muliggjorde anlæg inden for strenge fredningshensyn.</span></p>
                 </div>
               </div>
               <div class="proj">
@@ -380,7 +373,7 @@
       </div>
     </div>
     <div class="aside reveal">
-      <div class="slot" style="aspect-ratio:3/4"><img src="images/course.jpg" alt="Green ved Royal Copenhagen Golf Club" loading="lazy"></div>
+      <div class="slot" style="aspect-ratio:3/4"><img src="images/course.jpg" alt="Green ved Royal Copenhagen Golf Club" data-i18n-alt="altCourse" loading="lazy"></div>
       <div class="edu">
         <p class="kicker"><span data-i18n="eduKicker">Uddannelse</span></p>
         <p><span data-i18n="edu1">Greenkeeperuddannelsen, Danmark, 2001–2005</span></p>
@@ -395,26 +388,21 @@
     <div class="lead-intro reveal">
       <p class="kicker"><span data-i18n="leadKicker">Brancheledelse</span></p>
       <h2 class="h2"><span data-i18n="leadTitle">Med i den europæiske samtale</span></h2>
-      <p><span data-i18n="leadBody">Ud over banen har Martin i to årtier siddet i de rum, hvor standarder, lovgivning og forskningsprioriteter for greenkeeping fastlægges — fra nationale forhandlinger om EU’s direktiv om bæredygtig anvendelse af pesticider til europæisk forbunds- og forskningsarbejde.</span></p>
+      <p><span data-i18n="leadBody">Ud over banen har Martin i to årtier siddet i de rum, hvor standarder, lovgivning og forskningsprioriteter for greenkeeping fastlægges, fra nationale forhandlinger om EU’s direktiv om bæredygtig anvendelse af pesticider til europæisk forbunds- og forskningsarbejde.</span></p>
     </div>
     <div class="lead-grid">
-          <div class="lead-card">
-            <span class="years"><span data-i18n="leadership.0.0">2022 — nu</span></span>
-            <h3><span data-i18n="leadership.0.1">Vicepræsident, FEGGA</span></h3>
-            <p><span data-i18n="leadership.0.2">Federation of European Golf Greenkeepers Associations.</span></p>
-          </div>
           <div class="lead-card">
             <span class="years"><span data-i18n="leadership.1.0">2023 — nu</span></span>
             <h3><span data-i18n="leadership.1.1">EGA’s strategiske arbejdsgruppe</span></h3>
             <p><span data-i18n="leadership.1.2">FEGGA-repræsentant i European Golf Associations strategiske arbejdsgruppe.</span></p>
           </div>
           <div class="lead-card">
-            <span class="years"><span data-i18n="leadership.2.0">2008 — 2017</span></span>
-            <h3><span data-i18n="leadership.2.1">Formand, Danske Greenkeepere</span></h3>
-            <p><span data-i18n="leadership.2.2">Ni år i spidsen for den nationale forening.</span></p>
+            <span class="years"><span data-i18n="leadership.0.0">2022 — nu</span></span>
+            <h3><span data-i18n="leadership.0.1">Vicepræsident, FEGGA</span></h3>
+            <p><span data-i18n="leadership.0.2">Federation of European Golf Greenkeepers Associations.</span></p>
           </div>
           <div class="lead-card">
-            <span class="years"><span data-i18n="leadership.4.0">Siden 2008</span></span>
+            <span class="years"><span data-i18n="leadership.4.0">2008 — nu</span></span>
             <h3><span data-i18n="leadership.4.1">STERF’s rådgivende udvalg</span></h3>
             <p><span data-i18n="leadership.4.2">Medlem af rådgivende udvalg, Scandinavian Turfgrass and Environment Research Foundation.</span></p>
           </div>
@@ -428,20 +416,25 @@
             <h3><span data-i18n="leadership.3.1">EU’s pesticiddirektiv</span></h3>
             <p><span data-i18n="leadership.3.2">DGA-repræsentant i forhandlinger med Miljøstyrelsen om national implementering.</span></p>
           </div>
+          <div class="lead-card">
+            <span class="years"><span data-i18n="leadership.2.0">2008 — 2017</span></span>
+            <h3><span data-i18n="leadership.2.1">Formand, Danske Greenkeepere</span></h3>
+            <p><span data-i18n="leadership.2.2">Ni år i spidsen for den nationale forening.</span></p>
+          </div>
     </div>
   </div>
 </section>
 
 <section id="article" class="wrap">
-  <div class="col reveal" style="gap:20px;max-width:30em;margin-bottom:clamp(40px,6vh,72px)">
+  <div class="col reveal" style="gap:16px;max-width:none;margin-bottom:clamp(24px,4vh,40px)">
     <p class="kicker"><span data-i18n="artKicker">Udvalgt artikel</span></p>
     <h2 class="h2"><span data-i18n="artTitle">Greenkeeper International, september 2025</span></h2>
   </div>
   <div class="art reveal">
-    <div class="slot" style="aspect-ratio:3/2"><img src="images/article-deer.png" alt="Kronhjorte på banen ved Bernstorff Slot" loading="lazy"></div>
+    <div class="slot" style="aspect-ratio:3/2"><img src="images/article-deer.png" alt="Kronhjorte på banen ved Bernstorff Slot" data-i18n-alt="altArticle" loading="lazy"></div>
     <div class="art-body">
       <h3><span data-i18n="artHead">Pesticidfri drift af golfbaner</span></h3>
-      <p><span data-i18n="art1">Skrevet til BIGGA’s Greenkeeper International om, hvordan Royal Copenhagen Golf Club holder turfen sund uden pesticider — gennem minimale input og et skifte fra rapgræs til rødsvingel.</span></p>
+      <p><span data-i18n="art1">Skrevet til BIGGA’s Greenkeeper International om, hvordan Royal Copenhagen Golf Club holder turfen sund uden pesticider gennem minimale input og et skifte fra rapgræs til rødsvingel.</span></p>
       <blockquote><span data-i18n="artQuote">“Død er en integreret del af vores drift. Noget græs må dø, for at svinglen kan brede sig og trives.”</span></blockquote>
       <a class="pill pill-outline" href="uploads/greenkeeper-international-2025.pdf" target="_blank" rel="noopener"><span data-i18n="artCta">Læs artiklen (PDF)</span></a>
     </div>
@@ -450,9 +443,9 @@
 
 <section id="philosophy">
   <div class="wrap">
-    <div class="col reveal" style="gap:24px;max-width:24em">
+    <div class="col reveal" style="gap:24px;max-width:none">
       <p class="kicker"><span data-i18n="philKicker">Tilgang</span></p>
-      <p class="phil-lead"><span data-i18n="philTitle">Naturen arbejder med dig, ikke mod dig — hvis du giver den tid.</span></p>
+      <p class="phil-lead"><span data-i18n="philTitle">Naturen arbejder med dig, ikke mod dig, hvis du giver den tid</span></p>
     </div>
     <div class="phil-grid">
           <div class="phil reveal">
@@ -488,7 +481,7 @@
     <div class="con-lead">
       <p class="kicker"><span data-i18n="conKicker">Kontakt</span></p>
       <h2><span data-i18n="conTitle">Overvejer I en omstilling? Start med en samtale.</span></h2>
-      <p><span data-i18n="conBody">Rådgivningen begynder med et ærligt blik på banen, ressourcerne og ambitionerne — og fortsætter med råd, I kan handle på, i den rækkefølge de bør handles på.</span></p>
+      <p><span data-i18n="conBody">Rådgivningen begynder med et ærligt blik på banen, ressourcerne og ambitionerne. Derefter kommer råd, I kan handle på, i den rækkefølge de bør handles på.</span></p>
     </div>
     <div class="rows">
       <a class="row" href="mailto:martinnilsson647@outlook.com">
@@ -503,7 +496,7 @@
         <span class="k">LinkedIn</span>
         <span class="v">Martin Nilsson</span>
       </a>
-      <a class="pill con-cta" href="mailto:martinnilsson647@outlook.com?subject=Foresp%C3%B8rgsel%20om%20r%C3%A5dgivning"><span data-i18n="conCta">Kontakt</span></a>
+      <a class="pill con-cta" href="mailto:martinnilsson647@outlook.com?subject=Foresp%C3%B8rgsel%20om%20r%C3%A5dgivning" data-mail-subject="mailto:martinnilsson647@outlook.com"><span data-i18n="conCta">Kontakt</span></a>
     </div>
   </div>
 </section>
@@ -530,7 +523,7 @@ const DA = {
   heroBody: 'Mere end tyve års praksis på en af Europas mest regulerede golfbaner, hvor en links-inspireret anlæg blev ført gennem en fuld omstilling til pesticidfri drift uden at gå på kompromis med spilbarheden. Uafhængig rådgivning fra praksis til klubber, der står foran samme rejse.',
   aboutKicker: 'Profil',
   aboutTitle: 'Banen, der skulle fungere uden kemi',
-  about1: 'Martin Nilsson har vist, at en golfbane kan fungere fuldstændig uden kemi — uden at gå på kompromis med spilbarheden. Som uafhængig agronomisk golfrådgiver bygger han på mere end tyve års praktisk erfaring fra en af Europas mest respekterede og strengt regulerede golfbaner, hvor han ledte den fulde omstilling fra konventionel turfdrift til et robust, pesticidfrit system i høj kvalitet.',
+  about1: 'Martin Nilsson har vist, at en golfbane kan fungere fuldstændig uden kemi, uden at gå på kompromis med spilbarheden. Som uafhængig agronomisk golfrådgiver bygger han på mere end tyve års praktisk erfaring fra en af Europas mest respekterede og strengt regulerede golfbaner, hvor han ledte den fulde omstilling fra konventionel turfdrift til et robust, pesticidfrit system i høj kvalitet.',
   about2: 'Rådgivningen kombinerer langsigtet driftserfaring med uafhængig sparring. Martin er særligt værdsat for sin ro under pres, sin objektive rådgivning forankret i praktisk erfaring, og sin evne til at guide klubber trin for trin gennem komplekse agronomiske omstillinger under klimatiske, driftsmæssige og lovgivningsmæssige vilkår. I dag arbejder han selvstændigt som sparringspartner for greenkeepere, chefgreenkeepere og bestyrelser, der står over for de samme beslutninger.',
   stats: [['20+','År i praksis'],['2011','Sidste fungicid anvendt'],['FEGGA','Vicepræsident'],['STERF','Rådgivende udvalg']],
   expKicker: 'Kompetenceområder', expTitle: 'Det klubber søger hjælp til',
@@ -541,38 +534,44 @@ const DA = {
   edu1: 'Greenkeeperuddannelsen, Danmark, 2001–2005',
   edu2: 'HA, erhvervsøkonomi, Copenhagen Business School, 1989–1992',
   leadKicker: 'Brancheledelse', leadTitle: 'Med i den europæiske samtale',
-  leadBody: 'Ud over banen har Martin i to årtier siddet i de rum, hvor standarder, lovgivning og forskningsprioriteter for greenkeeping fastlægges — fra nationale forhandlinger om EU’s direktiv om bæredygtig anvendelse af pesticider til europæisk forbunds- og forskningsarbejde.',
+  leadBody: 'Ud over banen har Martin i to årtier siddet i de rum, hvor standarder, lovgivning og forskningsprioriteter for greenkeeping fastlægges, fra nationale forhandlinger om EU’s direktiv om bæredygtig anvendelse af pesticider til europæisk forbunds- og forskningsarbejde.',
   artKicker: 'Udvalgt artikel', artTitle: 'Greenkeeper International, september 2025',
   artHead: 'Pesticidfri drift af golfbaner',
-  art1: 'Skrevet til BIGGA’s Greenkeeper International om, hvordan Royal Copenhagen Golf Club holder turfen sund uden pesticider — gennem minimale input og et skifte fra rapgræs til rødsvingel.',
+  art1: 'Skrevet til BIGGA’s Greenkeeper International om, hvordan Royal Copenhagen Golf Club holder turfen sund uden pesticider gennem minimale input og et skifte fra rapgræs til rødsvingel.',
   artQuote: '“Død er en integreret del af vores drift. Noget græs må dø, for at svinglen kan brede sig og trives.”',
   artCta: 'Læs artiklen (PDF)',
-  philKicker: 'Tilgang', philTitle: 'Naturen arbejder med dig, ikke mod dig — hvis du giver den tid.',
+  philKicker: 'Tilgang', philTitle: 'Naturen arbejder med dig, ikke mod dig, hvis du giver den tid',
   conKicker: 'Kontakt', conTitle: 'Overvejer I en omstilling? Start med en samtale.',
-  conBody: 'Rådgivningen begynder med et ærligt blik på banen, ressourcerne og ambitionerne — og fortsætter med råd, I kan handle på, i den rækkefølge de bør handles på.',
-  labelEmail: 'E-mail', labelPhone: 'Telefon', labelCv: 'Curriculum vitae', labelCvVal: 'Hent PDF',
+  conBody: 'Rådgivningen begynder med et ærligt blik på banen, ressourcerne og ambitionerne. Derefter kommer råd, I kan handle på, i den rækkefølge de bør handles på.',
+  labelEmail: 'E-mail', labelPhone: 'Telefon',
+  pageTitle: 'Martin Nilsson Turf Consult · Uafhængig agronomisk golfrådgiver',
+  pageDesc: 'Uafhængig agronomisk golfrådgivning. Mere end tyve års praksis med pesticidfri drift og links-inspireret turfstrategi.',
+  mailSubject: 'Forespørgsel om rådgivning',
+  altPortrait: 'Martin Nilsson',
+  altCourse: 'Green ved Royal Copenhagen Golf Club',
+  altArticle: 'Kronhjorte på banen ved Bernstorff Slot',
   footer: 'Farum, Danmark · Uafhængig agronomisk golfrådgivning',
   services: [
-    ['Agronomisk rådgivning','Uafhængig, objektiv vurdering af turfens sundhed, spillekvalitet og driftspraksis — med anbefalinger prioriteret efter, hvad der betyder mest først.'],
+    ['Agronomisk rådgivning','Uafhængig, objektiv vurdering af turfens sundhed, spillekvalitet og driftspraksis. Anbefalingerne er prioriteret efter, hvad der betyder mest først.'],
     ['Omstilling til pesticidfri drift','Trinvis planlægning for klubber, der udfase plantebeskyttelsesmidler, sekventeret så banen forbliver spilbar undervejs.'],
     ['Turfstrategi','Langsigtet retning for greens, fairways og teesteder: artsmål, inputniveauer og de beslutninger, der holder planen sammen.'],
-    ['Links-inspireret drift','Drift med lave input på sandbaserede og udsatte anlæg — vind, tørke og sæsonstress behandlet som designparametre, ikke problemer.'],
+    ['Links-inspireret drift','Drift med lave input på sandbaserede og udsatte anlæg, hvor vind, tørke og sæsonstress behandles som designparametre frem for problemer.'],
     ['Sygdomsforebyggelse','Integreret, overvejende ikke-kemisk bekæmpelse af sneskimmel, dollar spot og stressbetingede sygdomme via timing, fugt og næring.'],
-    ['Vanding og dræn','Vandforsyning, jordstruktur, sandvalg og dræn vurderet som ét system — fundamentet for de fine græsser.'],
+    ['Vanding og dræn','Vandforsyning, jordstruktur, sandvalg og dræn vurderet som ét system, der er fundamentet for de fine græsser.'],
     ['Driftsplanlægning','Sæsonprogrammer, årlige evalueringer og flerårig optimering afstemt med budget og bemanding.'],
-    ['Uafhængige banegennemgange','Objektiv rapportering til bestyrelser og udvalg, skrevet så den kan læses af både ikke-fagfolk og greenkeeperteams.']
+    ['Uafhængige banegennemgange','Objektiv rapportering til bestyrelser og udvalg, herunder miljølovgivning, habitatbeskyttelse og myndighedsdialog. Skrevet så den kan læses af både ikke-fagfolk og greenkeeperteams.']
   ],
   rcgc: [
     'Ledte den fulde omstilling fra konventionel turfdrift til en robust, helt pesticidfri driftsmodel.',
     'Genindførte rødsvingel og hundegræs som dominerende arter gennem en disciplineret, links-inspireret drift med lave input.',
-    'Udviklede ikke-kemiske metoder til sygdomsbekæmpelse, blandt andet tromlingsbaseret kontrol af sneskimmel — senere dokumenteret i forskning støttet af R&A og STERF.',
+    'Udviklede ikke-kemiske metoder til sygdomsbekæmpelse, blandt andet tromlingsbaseret kontrol af sneskimmel, som senere blev dokumenteret i forskning støttet af R&A og STERF.',
     'Udviklede langsigtede driftsstrategier, der sikrede spillekvalitet, ensartethed og robusthed på greens, fairways og teesteder.',
     'Primær kontakt til offentlige myndigheder om miljøbeskyttelse, vandbeskyttelse, Natura 2000 og fredningslovgivning.',
     'Overordnet ansvar for driftsbudgetter på 1–1,5 mio. euro årligt og ledelse af 4–12 medarbejdere.',
     'Vært for 4–5 studiebesøg om året for europæiske greenkeepere og branchefolk med fokus på pesticidfri drift.'
   ],
   projects: [
-    ['2022','Short game-område','Med arkitekt Phillip Spogard (Spogard & Vandervaart). Opnåede myndighedsgodkendelse til at flytte beskyttede naturtyper — det første af sin art i Danmark — og muliggjorde anlæg inden for strenge fredningshensyn.'],
+    ['2022','Short game-område','Med arkitekt Phillip Spogard (Spogard & Vandervaart). Opnåede myndighedsgodkendelse til at flytte beskyttede naturtyper, det første af sin art i Danmark, og muliggjorde anlæg inden for strenge fredningshensyn.'],
     ['2020','Vandingsinfrastruktur','Planlægning og etablering af ny boring til bæredygtig vandforsyning.'],
     ['2015','Forreste teesteder','Med arkitekt Tom Mackenzie (Mackenzie & Ebert). Planlægning og anlæg af forreste teesteder på seks huller.'],
     ['2008–09','Fuld baneombygning','Medlem af projektgruppen med arkitekt Tom Mackenzie (Mackenzie & Ebert) og entreprenør Frank Lowell. Renovering af alle 18 huller, herunder teesteder, bunkers og green-omgivelser.']
@@ -582,7 +581,7 @@ const DA = {
     ['2023 — nu','EGA’s strategiske arbejdsgruppe','FEGGA-repræsentant i European Golf Associations strategiske arbejdsgruppe.'],
     ['2008 — 2017','Formand, Danske Greenkeepere','Ni år i spidsen for den nationale forening.'],
     ['2013 — 2017','EU’s pesticiddirektiv','DGA-repræsentant i forhandlinger med Miljøstyrelsen om national implementering.'],
-    ['Siden 2008','STERF’s rådgivende udvalg','Medlem af rådgivende udvalg, Scandinavian Turfgrass and Environment Research Foundation.'],
+    ['2008 — nu','STERF’s rådgivende udvalg','Medlem af rådgivende udvalg, Scandinavian Turfgrass and Environment Research Foundation.'],
     ['Løbende','Konferencetaler','Taler ved konferencer og workshops i Skandinavien, Storbritannien, Frankrig, Tjekkiet og Holland; bidragyder til Greenkeeper International.']
   ],
   philosophy: [
@@ -603,7 +602,7 @@ const EN = {
   heroBody: 'More than twenty years of practice at one of Europe’s most tightly regulated golf courses, guiding an elite links-style layout through a complete transition to zero-pesticide management without compromising playability. Independent, practitioner-led advice for clubs facing the same journey.',
   aboutKicker: 'Profile',
   aboutTitle: 'The course that had to work without chemistry',
-  about1: 'Martin Nilsson has proven that a golf course can operate entirely without chemistry — without compromising playability. As an independent golf agronomic consultant, he draws on more than twenty years of hands-on experience from one of Europe’s most respected and tightly regulated golf courses, where he led the complete transition from conventional turf management to a resilient, high-quality, zero-pesticide system.',
+  about1: 'Martin Nilsson has proven that a golf course can operate entirely without chemistry, without compromising playability. As an independent golf agronomic consultant, he draws on more than twenty years of hands-on experience from one of Europe’s most respected and tightly regulated golf courses, where he led the complete transition from conventional turf management to a resilient, high-quality, zero-pesticide system.',
   about2: 'His advisory work combines long-term operational leadership with independent sparring. Martin is particularly valued for his calm decision-making under pressure, objective advice rooted in real-world practice, and his ability to guide clubs step by step through complex agronomic transitions under climatic, operational and legislative constraints. Today he works independently as a sparring partner to greenkeepers, course managers and boards facing the same decisions.',
   stats: [['20+','Years in practice'],['2011','Last fungicide applied'],['FEGGA','Vice-President'],['STERF','Advisory Board']],
   expKicker: 'Areas of expertise', expTitle: 'Where clubs ask for help',
@@ -614,38 +613,44 @@ const EN = {
   edu1: 'Professional Greenkeeper Education, Denmark, 2001–2005',
   edu2: 'BSc Business Administration & Economics, Copenhagen Business School, 1989–1992',
   leadKicker: 'Industry leadership', leadTitle: 'Trusted with the European conversation',
-  leadBody: 'Beyond the course, Martin has spent two decades in the rooms where greenkeeping standards, legislation and research priorities are set — from national negotiations on the EU Sustainable Use Directive to European federation and research governance.',
+  leadBody: 'Beyond the course, Martin has spent two decades in the rooms where greenkeeping standards, legislation and research priorities are set, from national negotiations on the EU Sustainable Use Directive to European federation and research governance.',
   artKicker: 'Featured writing', artTitle: 'Greenkeeper International, September 2025',
   artHead: 'Pesticide-free golf course management',
-  art1: 'Written for BIGGA’s Greenkeeper International on how Royal Copenhagen Golf Club keeps its turf healthy without pesticides — through minimal inputs and a shift from Poa annua to red fescue.',
+  art1: 'Written for BIGGA’s Greenkeeper International on how Royal Copenhagen Golf Club keeps its turf healthy without pesticides through minimal inputs and a shift from Poa annua to red fescue.',
   artQuote: '“Death is an integral part of our management. Some grass must die so the fescue can colonise and thrive.”',
   artCta: 'Read the article (PDF)',
-  philKicker: 'Philosophy', philTitle: 'Nature works with you, not against you — if you give it time.',
+  philKicker: 'Philosophy', philTitle: 'Nature works with you, not against you, if you give it time',
   conKicker: 'Contact', conTitle: 'Considering a transition? Start with a conversation.',
-  conBody: 'Consultancy work begins with an honest look at your site, your resources and your ambitions — followed by advice you can act on, in the order it should be acted on.',
-  labelEmail: 'Email', labelPhone: 'Phone', labelCv: 'Curriculum vitae', labelCvVal: 'Download PDF',
-  footer: 'Farum, Denmark · Independent golf agronomic consultancy',
+  conBody: 'Consultancy work begins with an honest look at your site, your resources and your ambitions. Then comes advice you can act on, in the order it should be acted on.',
+  labelEmail: 'Email', labelPhone: 'Phone',
+  pageTitle: 'Martin Nilsson Turf Consult · Independent Golf Agronomic Consultant',
+  pageDesc: 'Independent golf agronomic consultancy. More than twenty years of practice in pesticide-free management and links-style turf strategy.',
+  mailSubject: 'Consultancy enquiry',
+  altPortrait: 'Martin Nilsson',
+  altCourse: 'Green at Royal Copenhagen Golf Club',
+  altArticle: 'Red deer on the course at Bernstorff Palace',
+  footer: 'Farum, Denmark · Independent Golf Agronomic Consultant',
   services: [
-    ['Agronomic consultancy','Independent, objective assessment of turf health, playing quality and management practice — with recommendations ranked by what matters first.'],
+    ['Agronomic consultancy','Independent, objective assessment of turf health, playing quality and management practice. Recommendations are ranked by what matters first.'],
     ['Zero-pesticide transition','Step-by-step planning for clubs moving away from plant protection products, sequenced so the course stays playable throughout.'],
     ['Turf strategy','Long-term direction for greens, fairways and tees: species targets, input levels, and the decisions that hold the plan together.'],
-    ['Links-style management','Low-input management of sand-based and exposed sites — wind, drought and seasonal stress treated as design parameters, not problems.'],
+    ['Links-style management','Low-input management of sand-based and exposed sites, where wind, drought and seasonal stress are treated as design parameters rather than problems.'],
     ['Disease prevention','Integrated, largely non-chemical suppression of Microdochium, dollar spot and stress-driven disease through timing, moisture and nutrition.'],
-    ['Irrigation & drainage','Water supply, soil structure, sand selection and drainage reviewed as one system — the foundation fine grasses depend on.'],
+    ['Irrigation & drainage','Water supply, soil structure, sand selection and drainage reviewed as one system, the foundation fine grasses depend on.'],
     ['Maintenance planning','Seasonal programmes, annual evaluations and multi-year optimisation aligned to budget and staffing reality.'],
-    ['Independent course reviews','Objective reporting for boards and committees, written to be read by non-specialists as well as greenkeeping teams.']
+    ['Independent course reviews','Objective reporting for boards and committees, including environmental legislation, habitat protection and liaison with authorities. Written to be read by non-specialists as well as greenkeeping teams.']
   ],
   rcgc: [
     'Led the complete transition from conventional turf management to a resilient, fully pesticide-free maintenance model.',
     'Reintroduced red fescue and browntop bent as dominant species through a disciplined, links-style, low-input regime.',
-    'Designed non-chemical disease suppression methods, including rolling-based Microdochium patch control — later documented through R&A/STERF-supported research.',
+    'Designed non-chemical disease suppression methods, including rolling-based Microdochium patch control, later documented through R&A/STERF-supported research.',
     'Developed long-term maintenance strategies securing quality of play, uniformity and resilience across greens, fairways and tees.',
     'Primary liaison with public authorities on environmental protection, water preservation, Natura 2000 and heritage legislation.',
     'Overall responsibility for maintenance budgets of €1–1.5m annually and leadership of 4–12 staff.',
     'Hosted 4–5 educational visits a year for European greenkeepers and industry professionals studying pesticide-free management.'
   ],
   projects: [
-    ['2022','Short game area','With architect Phillip Spogard (Spogard & Vandervaart). Secured regulatory approval to relocate protected habitats — a first in Denmark — enabling construction within strict conservation constraints.'],
+    ['2022','Short game area','With architect Phillip Spogard (Spogard & Vandervaart). Secured regulatory approval to relocate protected habitats, a first in Denmark, enabling construction within strict conservation constraints.'],
     ['2020','Irrigation infrastructure','Planning and establishment of a new borehole for sustainable water supply.'],
     ['2015','Forward tees programme','With architect Tom Mackenzie (Mackenzie & Ebert). Planning and construction of forward tees on six holes.'],
     ['2008–09','Full course reconstruction','Project group member with architect Tom Mackenzie (Mackenzie & Ebert) and contractor Frank Lowell. Renovation of all 18 holes, including tees, bunkers and green surrounds.']
@@ -655,7 +660,7 @@ const EN = {
     ['2023 — present','EGA Strategic Working Group','FEGGA representative to the European Golf Association’s strategic working group.'],
     ['2008 — 2017','Chairman, Danish Greenkeepers Association','Nine years leading the national association.'],
     ['2013 — 2017','EU Sustainable Use Directive','DGA representative in negotiations with the Danish Environmental Protection Agency on national implementation.'],
-    ['Since 2008','STERF Advisory Board','Advisory board member, Scandinavian Turfgrass and Environment Research Foundation.'],
+    ['2008 — present','STERF Advisory Board','Advisory board member, Scandinavian Turfgrass and Environment Research Foundation.'],
     ['Ongoing','Conference speaker','Speaker at conferences and workshops across Scandinavia, the UK, France, the Czech Republic and the Netherlands; contributor to Greenkeeper International.']
   ],
   philosophy: [
@@ -679,6 +684,20 @@ function setLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
     var v = lookup(dict, el.getAttribute('data-i18n'));
     if (typeof v === 'string') el.textContent = v;
+  });
+  /* alt text follows the language too */
+  document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+    var v = lookup(dict, el.getAttribute('data-i18n-alt'));
+    if (typeof v === 'string') el.setAttribute('alt', v);
+  });
+  /* page title and meta description */
+  if (dict.pageTitle) document.title = dict.pageTitle;
+  var meta = document.querySelector('meta[name="description"]');
+  if (meta && dict.pageDesc) meta.setAttribute('content', dict.pageDesc);
+  /* mail subject in the reader's language */
+  document.querySelectorAll('[data-mail-subject]').forEach(function (el) {
+    if (!dict.mailSubject) return;
+    el.setAttribute('href', el.getAttribute('data-mail-subject') + '?subject=' + encodeURIComponent(dict.mailSubject));
   });
   document.documentElement.lang = lang;
   document.querySelectorAll('.lang button').forEach(function (b) {
@@ -715,17 +734,6 @@ window.addEventListener('resize', function () {
     burger.setAttribute('aria-expanded', 'false');
   }
 });
-
-/* hero parallax */
-var par = document.querySelector('[data-parallax]');
-var raf = null;
-window.addEventListener('scroll', function () {
-  if (raf) return;
-  raf = requestAnimationFrame(function () {
-    raf = null;
-    if (par) par.style.transform = 'translate3d(0,' + (window.scrollY * 0.14).toFixed(1) + 'px,0)';
-  });
-}, { passive: true });
 </script>
 </body>
 </html>
