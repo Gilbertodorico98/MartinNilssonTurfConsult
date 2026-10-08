@@ -1,3 +1,21 @@
 .thumbnail
 .DS_Store
 Thumbs.db
+
+# ADVARSEL: alt der committes her, bliver offentligt tilgaengeligt paa
+# martinnilssonturfconsult.dk - ogsaa filer der ikke linkes fra siden.
+# I august 2026 laa et personligt foelgebrev ved et uheld offentligt paa
+# den maade. Derfor holdes arkiver og dokumenter ude som standard.
+*.zip
+*.rar
+*.7z
+*.docx
+*.xlsx
+*.pptx
+*.pdf
+
+# Artikel-PDF'en er med vilje offentlig og linkes fra artikelsektionen.
+!uploads/greenkeeper-international-2025.pdf
+
+# Skal en NY fil bevidst vaere offentlig, saa tilfoej enten en linje som
+# ovenstaaende, eller tving den med:  git add -f <filnavn>
