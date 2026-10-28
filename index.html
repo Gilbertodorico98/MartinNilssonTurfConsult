@@ -33,9 +33,30 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --forest:#1C2B22; --ink:#23302A; --body:#3A4A40; --mute:#4A5A50;
-    --sage:#6B7A5A; --brass:#A98B5B; --gold:#C9A876;
-    --white:#F8F6F1; --sand:#E7DFD1; --stone:#EFEBE2;
+    /* Brandfarver - Martin Nilsson Turf Consult
+       PRIMAER   skovgroen   #293F30   moerke flader, overskrifter, knapper
+       SEKUNDAER salviegroen #9CA780   tonede baand, labels, aarstal, links
+       ACCENT    sand        #D8C9AE   kontaktfladen og fremhaevninger paa moerk bund
+       BAGGRUND  raahvid     #F7F5EF   sidens grundflade */
+    --forest:#293F30;
+    --salvie:#9CA780;
+    --sand:#D8C9AE;
+    --white:#F7F5EF;
+
+    /* Det tonede baand er salviegroen lagt 18% hen over raahvid. Ren salviegroen
+       kan ikke baere en hel sektion: den giver kun 2,3:1 mod moerk tekst. */
+    --band:#E7E7DB;
+
+    /* Tekstnuancer. Overskrifter og broedtekst er skovgroen (primaer);
+       labels og aarstal er salviegroen moerknet, til den naar 4,5:1.
+       Tallene er kontrast paa raahvid / baand / sand. */
+    --ink:#293F30;      /* overskrifter    10,4 / 9,1 / 7,0 */
+    --body:#3C4C40;     /* broedtekst       8,4 / 7,3 / 5,6 */
+    --mute:#46564A;     /* daempet tekst    7,2 / 6,3 / 4,8 */
+    --sage:#465944;     /* labels, kickers  6,9 / 6,1 / 4,6 */
+
+    --brass:#465944;    /* sekundaer accent paa lys bund  - moerknet salviegroen */
+    --gold:#D8C9AE;     /* accent paa moerk bund - rent sand, 7,0 paa skovgroen */
     --pad: clamp(20px,5vw,80px);
     --sec: clamp(80px,13vh,170px);
   }
@@ -64,6 +85,9 @@
   /* nav */
   nav { position:fixed; top:0; left:0; right:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px var(--pad); background:rgba(248,246,241,.86); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-bottom:1px solid rgba(28,43,34,.08); }
   .logo { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+  /* Logoet er nu et billede. Hoejden styrer stoerrelsen, bredden foelger med. */
+  .logo img { height:38px; width:auto; display:block; }
+  footer .logo img { height:34px; }
   .logo-name { font-family:'EB Garamond',serif; font-size:19px; color:var(--forest); line-height:1.15; }
   .logo-sub { font-size:9.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--sage); }
   .nav-right { display:flex; align-items:center; gap:clamp(12px,2vw,30px); font-size:13px; letter-spacing:.06em; color:var(--body); }
@@ -92,15 +116,31 @@
 
   /* hero */
   header { position:relative; min-height:auto; display:grid; align-items:end; overflow:hidden; background:var(--forest); }
-  .hero-veil { position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,32,25,.55) 0%,rgba(20,32,25,.28) 38%,rgba(20,32,25,.86) 100%); }
-  .hero-inner { position:relative; padding:clamp(90px,12vh,130px) var(--pad) clamp(44px,7vh,80px); width:100%; display:grid; gap:clamp(28px,5vh,56px); }
-  .hero-lock { display:flex; align-items:center; gap:16px; color:var(--white); }
-  .hero-lock .n { font-family:'EB Garamond',serif; font-size:23px; line-height:1.15; }
-  .hero-lock .s { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#C6CDBC; }
+  .hero-img { position:absolute; inset:0; }
+  .hero-img img { width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
+  /* Fotoet er lyst (himmel og lyst rough), saa den hvide tekst kraever en
+     kraftig moerkning. To lag: en vandret, der holder venstre side moerk hvor
+     teksten staar, og en lodret, der bunder af mod bunden. */
+  .hero-veil { position:absolute; inset:0; background:
+      linear-gradient(90deg,rgba(16,26,20,.86) 0%,rgba(16,26,20,.72) 42%,rgba(16,26,20,.42) 100%),
+      linear-gradient(180deg,rgba(16,26,20,.55) 0%,rgba(16,26,20,.30) 40%,rgba(16,26,20,.70) 100%); }
+  /* Topafstanden skal rumme den faste navigationsbjaelke (ca. 75 px) og stadig
+     give kickeren luft - logolaasen, der foer holdt afstanden, er taget ud. */
+  .hero-inner { position:relative; padding:clamp(118px,16vh,170px) var(--pad) clamp(44px,7vh,80px); width:100%; display:grid; }
   .hero-copy { display:grid; grid-template-columns:minmax(0,1fr); gap:26px; max-width:1180px; }
-  .hero-kick { font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--gold); }
-  h1 { font-size:clamp(38px,6.4vw,92px); line-height:1.04; letter-spacing:-.015em; color:var(--white); text-wrap:balance; max-width:16em; }
-  .hero-body { max-width:34em; font-weight:300; font-size:clamp(15px,1.25vw,19px); line-height:1.75; color:rgba(248,246,241,.82); text-wrap:pretty; }
+  .hero-kick { font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--sand); }
+  /* Dansk fylder 12,6em paa een linje, engelsk 15,0em. Dansk skal blive paa een
+     linje og engelsk paa to - men heroen skal vaere lige hoej i begge sprog, saa
+     fotoets udsnit og alt nedenunder staar samme sted. Derfor reserverer
+     min-height altid to linjer (2 x line-height 1,04 = 2,08em): paa dansk staar
+     den ene linje i en kasse, der er to linjer hoej. */
+  h1 { font-size:clamp(38px,6.4vw,92px); line-height:1.04; letter-spacing:-.015em; color:var(--white); text-wrap:balance; max-width:16em; min-height:2.08em; }
+  /* Paa de smalleste telefoner er der kun ca. 280 px til overskriften. Den
+     laengste engelske halvdel fylder 7,6em, og ved 38px bliver det 289 px -
+     to for meget, saa engelsk faldt til tre linjer. Under 520 px er der i
+     forvejen ikke plads til dansk paa een linje, saa begge sprog har to. */
+  @media (max-width: 360px) { h1 { font-size:34px; } }
+  .hero-body { max-width:34em; display:grid; gap:14px; font-weight:300; font-size:clamp(15px,1.25vw,19px); line-height:1.75; color:rgba(248,246,241,.88); text-wrap:pretty; }
   .hero-ctas { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-top:6px; }
   .pill-solid { background:var(--white); color:var(--forest); }
   .pill-solid:hover { background:var(--sand); color:var(--forest); transform:translateY(-2px); }
@@ -110,7 +150,7 @@
   .col { display:grid; grid-template-columns:minmax(0,1fr); gap:22px; min-width:0; }
   .prose { max-width:34em; }
   .prose p:not(.kicker) { font-weight:300; font-size:17px; line-height:1.85; color:var(--body); text-wrap:pretty; }
-  .stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:rgba(28,43,34,.12); min-width:0; }
+  .stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--salvie); min-width:0; }
   /* Profil: teksten er kort, fotoet hoejt. Noegletallene flyttes ned under
      teksten, saa venstre spalte fylder hoejden ud i stedet for at efterlade
      et stort tomt felt. Paa mobil beholdes raekkefoelgen tekst -> foto -> tal. */
@@ -140,9 +180,9 @@
   .stat-l { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--sage); margin-top:8px; }
 
   /* expertise */
-  #expertise { background:var(--stone); }
+  #expertise { background:var(--band); }
   .cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); }
-  .card { background:var(--stone); padding:clamp(26px,3vw,40px); display:grid; gap:14px; align-content:start; transition:background .5s ease; }
+  .card { background:var(--band); padding:clamp(26px,3vw,40px); display:grid; gap:14px; align-content:start; transition:background .5s ease; }
   .card:hover { background:var(--white); }
   .card .num { font-size:11px; letter-spacing:.2em; color:var(--brass); }
   .card h3 { font-size:24px; line-height:1.25; color:var(--forest); }
@@ -188,17 +228,31 @@
   /* article */
   .art { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(36px,5vw,80px); align-items:start; }
   .art-body { display:grid; gap:26px; max-width:34em; }
-  .art-body h3 { font-size:clamp(26px,2.8vw,40px); line-height:1.2; color:var(--forest); text-wrap:balance; }
+  /* Samme greb som paa h1: dansk fylder 10,6em paa een linje og engelsk 14,5em,
+     saa dansk staar paa een linje og engelsk paa to. min-height reserverer de to
+     linjer (2 x line-height 1,2 = 2,4em), saa sektionen er lige hoej i begge. */
+  .art-body h3 { font-size:clamp(26px,2.8vw,40px); line-height:1.2; color:var(--forest); text-wrap:balance; min-height:2.4em; }
   .art-body p { font-weight:300; font-size:17px; line-height:1.85; color:var(--body); text-wrap:pretty; }
-  blockquote { padding:26px 0; border-top:1px solid rgba(28,43,34,.18); border-bottom:1px solid rgba(28,43,34,.18); font-style:italic; font-size:clamp(21px,2.2vw,30px); line-height:1.4; color:var(--forest); }
+  /* Citatet fylder een linje mere paa engelsk end paa dansk, saa min-height
+     reserverer den engelske hoejde i begge sprog. Hvor mange linjer engelsk
+     bruger afhaenger af bredden - maalt paa teksten selv er det 4 linjer fra
+     350 px og op, 3 linjer i baandet 460-750 px (hvor spalten er bred og
+     skriften stadig lille) og 5 linjer paa de smalleste telefoner.
+     Regnestykket: 1,4em er een linje, og de 54px er 2 x 26px luft plus de to
+     streger, fordi box-sizing er border-box. */
+  blockquote { padding:26px 0; border-top:1px solid rgba(28,43,34,.18); border-bottom:1px solid rgba(28,43,34,.18); font-style:italic; font-size:clamp(21px,2.2vw,30px); line-height:1.4; color:var(--forest); min-height:calc(5.6em + 54px); }
+  @media (min-width: 460px) and (max-width: 750px) { blockquote { min-height:calc(4.2em + 54px); } }
+  @media (max-width: 350px) { blockquote { min-height:calc(7em + 54px); } }
   .pill-outline { justify-self:start; border:1px solid rgba(28,43,34,.35); padding:14px 30px; }
   .pill-outline:hover { background:var(--forest); color:var(--white); }
 
   /* philosophy */
-  #philosophy { background:var(--sand); }
+  /* Tonet baand paa Erfaring, ikke Tilgang: Tilgang ligger klemt mellem
+     Kompetencer og Erfaring, og tre tonede baand i traek mister rytmen. */
+  #experience { background:var(--band); }
   .phil-lead { font-family:'EB Garamond',serif; font-size:clamp(30px,4.4vw,62px); line-height:1.18; letter-spacing:-.015em; color:var(--forest); text-wrap:balance; max-width:40em; }
   .phil-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:clamp(28px,3vw,56px); margin-top:clamp(48px,7vh,88px); }
-  .phil { display:grid; gap:12px; align-content:start; border-top:1px solid rgba(28,43,34,.22); padding-top:22px; }
+  .phil { display:grid; gap:12px; align-content:start; border-top:1px solid var(--salvie); padding-top:22px; }
   .phil h3 { font-size:22px; line-height:1.3; color:var(--forest); }
   .phil p { font-weight:300; font-size:15px; line-height:1.75; color:var(--mute); text-wrap:pretty; }
 
@@ -219,6 +273,7 @@
   }
 
   /* contact */
+  #contact { background:var(--sand); }
   .con-lead { display:grid; gap:18px; max-width:32em; }
   .con-lead h2 { font-size:clamp(29px,3.8vw,56px); line-height:1.12; letter-spacing:-.015em; color:var(--forest); text-wrap:balance; }
   .con-lead p:not(.kicker) { font-weight:300; font-size:17px; line-height:1.8; color:var(--body); text-wrap:pretty; }
@@ -237,37 +292,18 @@
 </head>
 <body>
 
-<template id="__bundler_thumbnail" data-bg-color="#1C2B22">
-  <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-    <rect width="400" height="400" fill="#1C2B22"/>
-    <g transform="translate(200,200) scale(6) translate(-20,-20)">
-      <path d="M2 24C12 20 28 20 38 24" stroke="#F8F6F1" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <path d="M23 7V24" stroke="#F8F6F1" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-      <path d="M23 7L35 10.5L23 14Z" fill="#A9BC9C"/>
-      <path d="M23 24V33M23 28L18 33M23 28L28 33" stroke="#C9A876" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-    </g>
-  </svg>
-</template>
 
 <nav>
-  <a class="logo" href="#top">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M2 24C12 20 28 20 38 24" stroke="#1C2B22" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7V24" stroke="#1C2B22" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7L35 10.5L23 14Z" fill="#8C9C84"/>
-        <path d="M23 24V33M23 28L18 33M23 28L28 33" stroke="#A98B5B" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-    <span>
-      <span class="logo-name" style="display:block">Martin Nilsson</span>
-      <span class="logo-sub" style="display:block">Turf Consult</span>
-    </span>
+  <a class="logo" href="#top" aria-label="Martin Nilsson Turf Consult">
+    <img src="images/logo-vandret.png" width="600" height="126" alt="Martin Nilsson Turf Consult">
   </a>
   <div class="nav-right">
     <div class="nav-links">
       <a href="#about"><span data-i18n="navAbout">Profil</span></a>
       <a href="#expertise"><span data-i18n="navExpertise">Kompetencer</span></a>
-      <a href="#experience"><span data-i18n="navExperience">Erfaring</span></a>
       <a href="#philosophy"><span data-i18n="navPhilosophy">Tilgang</span></a>
+      <a href="#experience"><span data-i18n="navExperience">Erfaring</span></a>
+      <a href="#leadership"><span data-i18n="navLeadership">Brancheledelse</span></a>
       <a href="#article"><span data-i18n="navWriting">Artikler</span></a>
     </div>
     <div class="lang">
@@ -281,32 +317,26 @@
   <div class="menu">
     <a href="#about"><span data-i18n="navAbout">Profil</span></a>
     <a href="#expertise"><span data-i18n="navExpertise">Kompetencer</span></a>
-    <a href="#experience"><span data-i18n="navExperience">Erfaring</span></a>
     <a href="#philosophy"><span data-i18n="navPhilosophy">Tilgang</span></a>
+    <a href="#experience"><span data-i18n="navExperience">Erfaring</span></a>
+    <a href="#leadership"><span data-i18n="navLeadership">Brancheledelse</span></a>
     <a href="#article"><span data-i18n="navWriting">Artikler</span></a>
     <a href="#contact"><span data-i18n="navCta">Kontakt</span></a>
   </div>
 </nav>
 
 <header id="top">
+  <div class="hero-img"><img src="images/hero.jpg" alt="Greenkeeper på green med dådyr i det uklippede rough" data-i18n-alt="altHero" fetchpriority="high"></div>
   <div class="hero-veil"></div>
   <div class="hero-inner">
-    <div class="hero-lock">
-      <svg width="46" height="46" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M2 24C12 20 28 20 38 24" stroke="#F8F6F1" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7V24" stroke="#F8F6F1" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7L35 10.5L23 14Z" fill="#A9BC9C"/>
-        <path d="M23 24V33M23 28L18 33M23 28L28 33" stroke="#C9A876" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-      <span>
-        <span class="n" style="display:block">Martin Nilsson</span>
-        <span class="s" style="display:block">Turf Consult</span>
-      </span>
-    </div>
     <div class="hero-copy">
       <p class="hero-kick reveal"><span data-i18n="heroKicker">Uafhængig agronomisk golfbanerådgiver</span></p>
-      <h1 class="reveal"><span data-i18n="heroTitle">Jeg hjælper golfklubber med at lykkes med pesticidfri banepleje</span></h1>
-      <p class="hero-body reveal"><span data-i18n="heroBody">Jeg omsætter praktisk erfaring med pesticidfri drift til klare prioriteringer, realistiske planer og løsninger, der styrker banens robusthed og fastholder spillekvaliteten. Jeg rådgiver golfklubber i Danmark og Europa, som vil reducere brugen af plantebeskyttelsesmidler eller stå stærkere i en fremtid med skærpede krav.</span></p>
+      <h1 class="reveal"><span data-i18n="heroTitle">Sunde golfbaner – uden pesticider</span></h1>
+      <div class="hero-body reveal">
+        <p><span data-i18n="heroBody1">Jeg hjælper golfklubber med at udvikle robuste golfbaner og lykkes med pesticidfri banepleje – uden at gå på kompromis med spillekvaliteten.</span></p>
+        <p><span data-i18n="heroBody2">Med over 20 års praktisk erfaring omsætter jeg agronomisk viden og greenkeeping i praksis til klare prioriteringer, konkrete løsninger og realistiske planer, der passer til banens forhold, klubbens ambitioner og økonomi.</span></p>
+        <p><span data-i18n="heroBody3">Jeg rådgiver golfklubber i Danmark og Europa om vejen mod mindre pesticidforbrug og en mere robust, langsigtet banedrift.</span></p>
+      </div>
       <div class="hero-ctas reveal">
         <a class="pill pill-solid" href="#contact"><span data-i18n="heroCta">Tag en uforpligtende samtale</span></a>
       </div>
@@ -384,69 +414,102 @@
   </div>
 </section>
 
-<section id="experience" class="wrap">
-  <div class="col reveal" style="gap:20px;max-width:30em;margin-bottom:clamp(44px,7vh,84px)">
-    <p class="kicker"><span data-i18n="expcKicker">Erfaring</span></p>
-    <h2 class="h2"><span data-i18n="expcTitle">Dokumenteret i praksis</span></h2>
-  </div>
-  <div class="two">
-    <div>
-      <div class="job reveal">
-        <div class="job-head">
-          <span>2006–2026</span>
-          <h3><span data-i18n="roleTitle">Chefgreenkeeper</span></h3>
-        </div>
-        <p class="job-club"><span data-i18n="roleClub">Københavns Golf Klub, Danmark</span></p>
-        <ul>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.0">Ledte omstillingen fra konventionel græspleje til en robust, pesticidfri driftsmodel.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.1">Genindførte rødsvingel og almindelig hvene som dominerende græsarter med fokus på naturlig konkurrence og minimale input.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.2">Udviklede ikke-kemiske metoder til sygdomsforebyggelse, herunder tromlingsbaseret kontrol af sneskimmel, som senere blev dokumenteret i forskning støttet af R&amp;A og STERF.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.3">Udviklede langsigtede plejestrategier for ensartede, robuste og spilbare greens, fairways og teesteder.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.4">Varetog dialogen med myndigheder og interesseorganisationer om miljøbeskyttelse, vandbeskyttelse, Natura 2000 og fredningslovgivning.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.5">Ansvar for årlige driftsbudgetter på 1–1,5 mio. euro og ledelse af 4–12 medarbejdere.</span></span></li>
-              <li><span class="dash">—</span><span><span data-i18n="rcgc.6">Vært for europæiske studiebesøg om pesticidfri drift og foredragsholder ved konferencer og events i Danmark, Europa og Canada.</span></span></li>
-        </ul>
-      </div>
-      <div class="works reveal">
-        <h3><span data-i18n="projTitle">Udvalgte anlægs- og renoveringsprojekter</span></h3>
-        <div style="display:grid;gap:20px">
-              <div class="proj">
-                <span class="year">2022</span>
-                <div>
-                  <div class="proj-title"><span data-i18n="projects.0.1">Shortgameområde</span></div>
-                  <p><span data-i18n="projects.0.2">Sammen med arkitekt Phillip Spogard opnåede jeg myndighedsgodkendelse til at flytte beskyttede naturtyper og muliggjorde dermed anlægget under strenge fredningshensyn.</span></p>
-                </div>
-              </div>
-              <div class="proj">
-                <span class="year">2020</span>
-                <div>
-                  <div class="proj-title"><span data-i18n="projects.1.1">Vandingsinfrastruktur</span></div>
-                  <p><span data-i18n="projects.1.2">Planlægning og etablering af en ny vandboring til bæredygtig vandforsyning.</span></p>
-                </div>
-              </div>
-              <div class="proj">
-                <span class="year">2015</span>
-                <div>
-                  <div class="proj-title"><span data-i18n="projects.2.1">Fremskudte teesteder</span></div>
-                  <p><span data-i18n="projects.2.2">Sammen med arkitekt Tom Mackenzie planlagde og anlagde jeg fremskudte teesteder på seks huller for at gøre banen mere tilgængelig for nybegyndere og kortslående golfspillere.</span></p>
-                </div>
-              </div>
-              <div class="proj">
-                <span class="year">2008–2009</span>
-                <div>
-                  <div class="proj-title"><span data-i18n="projects.3.1">Fuld baneombygning</span></div>
-                  <p><span data-i18n="projects.3.2">Sammen med arkitekt Tom Mackenzie og entreprenør Frank Lowell medvirkede jeg til renoveringen af alle 18 huller, herunder teesteder, bunkers og greenområder.</span></p>
-                </div>
-              </div>
-        </div>
-      </div>
+<section id="philosophy">
+  <div class="wrap">
+    <div class="col reveal" style="gap:24px;max-width:none">
+      <p class="kicker"><span data-i18n="philKicker">Tilgang</span></p>
+      <p class="phil-lead"><span data-i18n="philTitle">Naturen arbejder med dig, når du giver den de rette vilkår</span></p>
     </div>
-    <div class="aside reveal">
-      <div class="slot" style="aspect-ratio:3/4"><img src="images/course.jpg" alt="Green ved Københavns Golf Klub" data-i18n-alt="altCourse" loading="lazy"></div>
-      <div class="edu">
-        <p class="kicker"><span data-i18n="eduKicker">Uddannelse</span></p>
-        <p><span data-i18n="edu1">Greenkeeperuddannelsen, Danmark, 2001–2005</span></p>
-        <p><span data-i18n="edu2">HA i erhvervsøkonomi, Copenhagen Business School, 1989–1992</span></p>
+    <div class="phil-grid">
+          <div class="phil reveal">
+            <h3><span data-i18n="philosophy.0.0">Langsigtet tænkning</span></h3>
+            <p><span data-i18n="philosophy.0.1">En varig omstilling kræver en flerårig plan, der balancerer faglige mål, ressourcer og medlemmernes forventninger.</span></p>
+          </div>
+          <div class="phil reveal">
+            <h3><span data-i18n="philosophy.1.0">Praksis frem for teori</span></h3>
+            <p><span data-i18n="philosophy.1.1">Jeg omsætter forskning og praktisk erfaring til løsninger, der virker på den enkelte bane.</span></p>
+          </div>
+          <div class="phil reveal">
+            <h3><span data-i18n="philosophy.2.0">Spillekvalitet er ikke til forhandling</span></h3>
+            <p><span data-i18n="philosophy.2.1">Bæredygtig banepleje skal både reducere banens aftryk og fastholde en høj spillekvalitet.</span></p>
+          </div>
+          <div class="phil reveal">
+            <h3><span data-i18n="philosophy.3.0">Dømmekraft under pres</span></h3>
+            <p><span data-i18n="philosophy.3.1">Sygdomstryk og stressperioder kræver rolige, faglige beslutninger. Kortsigtede udsving vurderes i lyset af banens langsigtede udvikling.</span></p>
+          </div>
+          <div class="phil reveal">
+            <h3><span data-i18n="philosophy.4.0">Vidensdeling</span></h3>
+            <p><span data-i18n="philosophy.4.1">Mine anbefalinger bygger på praktisk erfaring og et stærkt internationalt netværk af greenkeepere, forskere og branchefolk.</span></p>
+          </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="col reveal" style="gap:20px;max-width:30em;margin-bottom:clamp(44px,7vh,84px)">
+      <p class="kicker"><span data-i18n="expcKicker">Erfaring</span></p>
+      <h2 class="h2"><span data-i18n="expcTitle">Dokumenteret i praksis</span></h2>
+    </div>
+    <div class="two">
+      <div>
+        <div class="job reveal">
+          <div class="job-head">
+            <span>2006–2026</span>
+            <h3><span data-i18n="roleTitle">Chefgreenkeeper</span></h3>
+          </div>
+          <p class="job-club"><span data-i18n="roleClub">Københavns Golf Klub, Danmark</span></p>
+          <ul>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.0">Ledte omstillingen fra konventionel græspleje til en robust, pesticidfri driftsmodel.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.1">Genindførte rødsvingel og almindelig hvene som dominerende græsarter med fokus på naturlig konkurrence og minimale input.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.2">Udviklede ikke-kemiske metoder til sygdomsforebyggelse, herunder tromlingsbaseret kontrol af sneskimmel, som senere blev dokumenteret i forskning støttet af R&amp;A og STERF.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.3">Udviklede langsigtede plejestrategier for ensartede, robuste og spilbare greens, fairways og teesteder.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.4">Varetog dialogen med myndigheder og interesseorganisationer om miljøbeskyttelse, vandbeskyttelse, Natura 2000 og fredningslovgivning.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.5">Ansvar for årlige driftsbudgetter på 1–1,5 mio. euro og ledelse af 4–12 medarbejdere.</span></span></li>
+                <li><span class="dash">—</span><span><span data-i18n="rcgc.6">Vært for europæiske studiebesøg om pesticidfri drift og foredragsholder ved konferencer og events i Danmark, Europa og Canada.</span></span></li>
+          </ul>
+        </div>
+        <div class="works reveal">
+          <h3><span data-i18n="projTitle">Udvalgte anlægs- og renoveringsprojekter</span></h3>
+          <div style="display:grid;gap:20px">
+                <div class="proj">
+                  <span class="year">2022</span>
+                  <div>
+                    <div class="proj-title"><span data-i18n="projects.0.1">Shortgameområde</span></div>
+                    <p><span data-i18n="projects.0.2">Sammen med arkitekt Phillip Spogard opnåede jeg myndighedsgodkendelse til at flytte beskyttede naturtyper og muliggjorde dermed anlægget under strenge fredningshensyn.</span></p>
+                  </div>
+                </div>
+                <div class="proj">
+                  <span class="year">2020</span>
+                  <div>
+                    <div class="proj-title"><span data-i18n="projects.1.1">Vandingsinfrastruktur</span></div>
+                    <p><span data-i18n="projects.1.2">Planlægning og etablering af en ny vandboring til bæredygtig vandforsyning.</span></p>
+                  </div>
+                </div>
+                <div class="proj">
+                  <span class="year">2015</span>
+                  <div>
+                    <div class="proj-title"><span data-i18n="projects.2.1">Fremskudte teesteder</span></div>
+                    <p><span data-i18n="projects.2.2">Sammen med arkitekt Tom Mackenzie planlagde og anlagde jeg fremskudte teesteder på seks huller for at gøre banen mere tilgængelig for nybegyndere og kortslående golfspillere.</span></p>
+                  </div>
+                </div>
+                <div class="proj">
+                  <span class="year">2008–2009</span>
+                  <div>
+                    <div class="proj-title"><span data-i18n="projects.3.1">Fuld baneombygning</span></div>
+                    <p><span data-i18n="projects.3.2">Sammen med arkitekt Tom Mackenzie og entreprenør Frank Lowell medvirkede jeg til renoveringen af alle 18 huller, herunder teesteder, bunkers og greenområder.</span></p>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="aside reveal">
+        <div class="slot" style="aspect-ratio:3/4"><img src="images/course.jpg" alt="Green ved Københavns Golf Klub" data-i18n-alt="altCourse" loading="lazy"></div>
+        <div class="edu">
+          <p class="kicker"><span data-i18n="eduKicker">Uddannelse</span></p>
+          <p><span data-i18n="edu1">Greenkeeperuddannelsen, Danmark, 2001–2005</span></p>
+          <p><span data-i18n="edu2">HA i erhvervsøkonomi, Copenhagen Business School, 1989–1992</span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -524,71 +587,36 @@
   </div>
 </section>
 
-<section id="philosophy">
+<section id="contact">
   <div class="wrap">
-    <div class="col reveal" style="gap:24px;max-width:none">
-      <p class="kicker"><span data-i18n="philKicker">Tilgang</span></p>
-      <p class="phil-lead"><span data-i18n="philTitle">Naturen arbejder med dig, når du giver den de rette vilkår</span></p>
-    </div>
-    <div class="phil-grid">
-          <div class="phil reveal">
-            <h3><span data-i18n="philosophy.0.0">Langsigtet tænkning</span></h3>
-            <p><span data-i18n="philosophy.0.1">En varig omstilling kræver en flerårig plan, der balancerer faglige mål, ressourcer og medlemmernes forventninger.</span></p>
-          </div>
-          <div class="phil reveal">
-            <h3><span data-i18n="philosophy.1.0">Praksis frem for teori</span></h3>
-            <p><span data-i18n="philosophy.1.1">Jeg omsætter forskning og praktisk erfaring til løsninger, der virker på den enkelte bane.</span></p>
-          </div>
-          <div class="phil reveal">
-            <h3><span data-i18n="philosophy.2.0">Spillekvalitet er ikke til forhandling</span></h3>
-            <p><span data-i18n="philosophy.2.1">Bæredygtig banepleje skal både reducere banens aftryk og fastholde en høj spillekvalitet.</span></p>
-          </div>
-          <div class="phil reveal">
-            <h3><span data-i18n="philosophy.3.0">Dømmekraft under pres</span></h3>
-            <p><span data-i18n="philosophy.3.1">Sygdomstryk og stressperioder kræver rolige, faglige beslutninger. Kortsigtede udsving vurderes i lyset af banens langsigtede udvikling.</span></p>
-          </div>
-          <div class="phil reveal">
-            <h3><span data-i18n="philosophy.4.0">Vidensdeling</span></h3>
-            <p><span data-i18n="philosophy.4.1">Mine anbefalinger bygger på praktisk erfaring og et stærkt internationalt netværk af greenkeepere, forskere og branchefolk.</span></p>
-          </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="wrap">
-  <div class="two reveal">
-    <div class="con-lead">
-      <p class="kicker"><span data-i18n="conKicker">Kontakt</span></p>
-      <h2><span data-i18n="conTitle">Overvejer I pesticidfri drift? Lad os tage en samtale.</span></h2>
-      <p><span data-i18n="conBody">Jeg tager udgangspunkt i jeres bane, ressourcer og klubbens ambitioner og giver jer klare anbefalinger, som kan omsættes til handling.</span></p>
-    </div>
-    <div class="rows">
-      <a class="row" href="mailto:martinnilsson@turfconsult.com">
-        <span class="k"><span data-i18n="labelEmail">E-mail</span></span>
-        <span class="v">martinnilsson@turfconsult.com</span>
-      </a>
-      <a class="row" href="tel:+4553750727">
-        <span class="k"><span data-i18n="labelPhone">Telefon</span></span>
-        <span class="v">+45 53 75 07 27</span>
-      </a>
-      <a class="row" href="https://www.linkedin.com/in/martin-nilsson-31474120/" target="_blank" rel="noopener">
-        <span class="k">LinkedIn</span>
-        <span class="v">Martin Nilsson</span>
-      </a>
-      <a class="pill con-cta" href="mailto:martinnilsson@turfconsult.com?subject=Foresp%C3%B8rgsel%20om%20r%C3%A5dgivning" data-mail-subject="mailto:martinnilsson@turfconsult.com"><span data-i18n="conCta">Kontakt mig</span></a>
+    <div class="two reveal">
+      <div class="con-lead">
+        <p class="kicker"><span data-i18n="conKicker">Kontakt</span></p>
+        <h2><span data-i18n="conTitle">Overvejer I pesticidfri drift? Lad os tage en samtale</span></h2>
+        <p><span data-i18n="conBody">Jeg tager udgangspunkt i jeres bane, ressourcer og klubbens ambitioner og giver jer klare anbefalinger, som kan omsættes til handling.</span></p>
+      </div>
+      <div class="rows">
+        <a class="row" href="mailto:martinnilsson@turfconsult.com">
+          <span class="k"><span data-i18n="labelEmail">E-mail</span></span>
+          <span class="v">martinnilsson@turfconsult.com</span>
+        </a>
+        <a class="row" href="tel:+4553750727">
+          <span class="k"><span data-i18n="labelPhone">Telefon</span></span>
+          <span class="v">+45 53 75 07 27</span>
+        </a>
+        <a class="row" href="https://www.linkedin.com/in/martin-nilsson-31474120/" target="_blank" rel="noopener">
+          <span class="k">LinkedIn</span>
+          <span class="v">Martin Nilsson</span>
+        </a>
+        <a class="pill con-cta" href="mailto:martinnilsson@turfconsult.com?subject=Foresp%C3%B8rgsel%20om%20r%C3%A5dgivning" data-mail-subject="mailto:martinnilsson@turfconsult.com"><span data-i18n="conCta">Kontakt mig</span></a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="logo">
-    <svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M2 24C12 20 28 20 38 24" stroke="#1C2B22" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7V24" stroke="#1C2B22" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M23 7L35 10.5L23 14Z" fill="#8C9C84"/>
-        <path d="M23 24V33M23 28L18 33M23 28L28 33" stroke="#A98B5B" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-    <span style="font-family:'EB Garamond',serif;font-size:17px;color:var(--forest)">Martin Nilsson Turf Consult</span>
+    <img src="images/logo-vandret.png" width="600" height="126" alt="Martin Nilsson Turf Consult">
   </div>
   <p><span data-i18n="footer">Uafhængig agronomisk golfbanerådgivning i Danmark og Europa</span></p>
 </footer>
@@ -608,11 +636,11 @@ const DA = {
   navExperience: 'Erfaring',
   navWriting: 'Artikler',
   navPhilosophy: 'Tilgang',
+  navLeadership: 'Brancheledelse',
   navCta: 'Kontakt',
   conCta: 'Kontakt mig',
   heroKicker: 'Uafhængig agronomisk golfbanerådgiver',
-  heroTitle: 'Jeg hjælper golfklubber med at lykkes med pesticidfri banepleje',
-  heroBody: 'Jeg omsætter praktisk erfaring med pesticidfri drift til klare prioriteringer, realistiske planer og løsninger, der styrker banens robusthed og fastholder spillekvaliteten. Jeg rådgiver golfklubber i Danmark og Europa, som vil reducere brugen af plantebeskyttelsesmidler eller stå stærkere i en fremtid med skærpede krav.',
+  heroTitle: 'Sunde golfbaner – uden pesticider',
   heroCta: 'Tag en uforpligtende samtale',
   aboutKicker: 'Profil',
   aboutTitle: 'Praktisk rådgivning til en pesticidfri fremtid',
@@ -651,7 +679,7 @@ const DA = {
   philKicker: 'Tilgang',
   philTitle: 'Naturen arbejder med dig, når du giver den de rette vilkår',
   conKicker: 'Kontakt',
-  conTitle: 'Overvejer I pesticidfri drift? Lad os tage en samtale.',
+  conTitle: 'Overvejer I pesticidfri drift? Lad os tage en samtale',
   conBody: 'Jeg tager udgangspunkt i jeres bane, ressourcer og klubbens ambitioner og giver jer klare anbefalinger, som kan omsættes til handling.',
   labelEmail: 'E-mail',
   labelPhone: 'Telefon',
@@ -702,7 +730,11 @@ const DA = {
     ['Spillekvalitet er ikke til forhandling','Bæredygtig banepleje skal både reducere banens aftryk og fastholde en høj spillekvalitet.'],
     ['Dømmekraft under pres','Sygdomstryk og stressperioder kræver rolige, faglige beslutninger. Kortsigtede udsving vurderes i lyset af banens langsigtede udvikling.'],
     ['Vidensdeling','Mine anbefalinger bygger på praktisk erfaring og et stærkt internationalt netværk af greenkeepere, forskere og branchefolk.']
-  ]
+  ],
+  heroBody1: 'Jeg hjælper golfklubber med at udvikle robuste golfbaner og lykkes med pesticidfri banepleje – uden at gå på kompromis med spillekvaliteten.',
+  heroBody2: 'Med over 20 års praktisk erfaring omsætter jeg agronomisk viden og greenkeeping i praksis til klare prioriteringer, konkrete løsninger og realistiske planer, der passer til banens forhold, klubbens ambitioner og økonomi.',
+  heroBody3: 'Jeg rådgiver golfklubber i Danmark og Europa om vejen mod mindre pesticidforbrug og en mere robust, langsigtet banedrift.',
+  altHero: 'Greenkeeper på green med dådyr i det uklippede rough'
 };
 
 const EN = {
@@ -711,11 +743,11 @@ const EN = {
   navExperience: 'Experience',
   navWriting: 'Articles',
   navPhilosophy: 'Philosophy',
+  navLeadership: 'Leadership',
   navCta: 'Contact',
   conCta: 'Contact me',
   heroKicker: 'Independent Golf Course Agronomy Consultant',
-  heroTitle: 'I help golf clubs succeed with pesticide-free turf management',
-  heroBody: 'I turn hands-on experience with pesticide-free management into clear priorities, realistic plans and solutions that strengthen the resilience of the course while maintaining playing quality. I advise golf clubs across Denmark and Europe that want to reduce their use of plant protection products, or to stand stronger in a future of tighter regulation.',
+  heroTitle: 'Healthy golf courses – without pesticides',
   heroCta: 'Book an informal conversation',
   aboutKicker: 'Profile',
   aboutTitle: 'Practical advice for a pesticide-free future',
@@ -754,7 +786,7 @@ const EN = {
   philKicker: 'Philosophy',
   philTitle: 'Nature works with you when you give it the right conditions',
   conKicker: 'Contact',
-  conTitle: 'Considering pesticide-free management? Let us talk.',
+  conTitle: 'Considering pesticide-free management? Let us talk',
   conBody: 'I start from your course, your resources and the ambitions of the club, and give you clear recommendations that can be turned into action.',
   labelEmail: 'Email',
   labelPhone: 'Phone',
@@ -805,7 +837,11 @@ const EN = {
     ['Playing quality is not negotiable','Sustainable turf management has to reduce the footprint of the course and maintain high playing quality at the same time.'],
     ['Judgement under pressure','Disease pressure and periods of stress call for calm, technical decisions. Short-term swings are judged against the long-term development of the course.'],
     ['Sharing knowledge','My recommendations rest on hands-on experience and a strong international network of greenkeepers, researchers and industry people.']
-  ]
+  ],
+  heroBody1: 'I help golf clubs build resilient courses and succeed with pesticide-free turf management – without compromising playing quality.',
+  heroBody2: 'With more than 20 years of hands-on experience, I turn agronomy and practical greenkeeping into clear priorities, concrete solutions and realistic plans that fit the conditions of the course, the ambitions of the club and its budget.',
+  heroBody3: 'I advise golf clubs across Denmark and Europe on the path towards lower pesticide use and more resilient, long-term course management.',
+  altHero: 'Greenkeeper on a green with fallow deer in the unmown rough'
 };
 
 var DICT = { da: DA, en: EN };
